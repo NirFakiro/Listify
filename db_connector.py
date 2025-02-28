@@ -7,13 +7,16 @@ db_password = os.getenv("DB_PASSWORD")
 
 
 def get_db_connection():
-    connection= mysql.connector.connect(
-        host='localhost',
-        user= 'root',
-        password=db_password,
-        database='users_db',
-        port = 3307
+    try:
+        connection = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password=db_password,
+            database='users_db',
+            port=3307
 
-    )
-
-    return connection
+        )
+        return connection
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return None
