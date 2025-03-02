@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from user_service import create_user, get_users, update_user
+from user_service import create_user, get_users, update_user, delete_user
 
 
 def get_all_users():
@@ -43,3 +43,11 @@ def put(user_id):
         return update
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+def delete(user_id):
+    try:
+        return delete_user(user_id)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
