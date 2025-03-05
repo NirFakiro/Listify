@@ -15,7 +15,7 @@ try:
 except Exception as e:
     print(e)
 
-sleep(1)
+sleep(3)
 
 # This section of the code is where the POST request is triggered
 # via the UI by interacting with the user interface.
