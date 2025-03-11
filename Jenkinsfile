@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    python3 -m venv .venv
+                    python -m venv .venv
                     if [ -f ".venv/Scripts/activate" ]; then
                         . .venv/Scripts/activate
                     else
