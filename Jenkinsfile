@@ -20,21 +20,21 @@ pipeline {
         stage('Run backend_testing') {
             steps {
                 echo 'Running backend app...'
-                sh 'python3 testing/backend_testing.py'
+                sh 'python testing/backend_testing.py'
             }
         }
 
         stage('Run frontend_testing') {
             steps {
                 echo 'Running frontend app...'
-                sh 'python3 testing/frontend_testing.py'
+                sh 'python testing/frontend_testing.py'
             }
         }
 
         stage('Clean environment') {
             steps {
                 echo 'Cleaning environment...'
-                sh 'python3 clean_environment.py'
+                sh 'python clean_environment.py'
             }
         }
     }
