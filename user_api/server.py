@@ -9,6 +9,10 @@ import signal
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def home():
+    return 'Welcome to API'
+
 @app.route('/stop_server')
 def stop_server():
  os.kill(os.getpid(), signal.CTRL_C_EVENT)
