@@ -1,21 +1,34 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.12'
-        }
-    }
+    agent any
 
     stages {
+        stage('Check Python Version') {
+            steps {
+                script {
+                    echo "Checking Python version..."
+                    sh 'python --version'
+                    echo "Python is working fine."
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                script {
+                    echo "Installing dependencies from requirements.txt..."
+                    sh 'pip install -r requirements.txt'
+                    echo "Dependencies installed successfully."
+                }
             }
         }
 
         stage('Run Server') {
             steps {
                 dir('user_api') {
-                    sh 'python server.py'
+                    script {
+                        echo "Running server.py..."
+                        sh 'python server.py'
+                    }
                 }
             }
         }
