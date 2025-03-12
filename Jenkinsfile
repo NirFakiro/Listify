@@ -11,6 +11,7 @@ pipeline {
                 script {
                     echo "Installing dependencies from requirements.txt..."
                     sh 'pip install -r requirements.txt'
+
                 }
             }
         }
@@ -20,6 +21,7 @@ pipeline {
                 dir('user_api') {
                     script {
                         echo "Running server.py..."
+                        sh 'ls -l'
                         sh 'python server.py'
                     }
                 }
