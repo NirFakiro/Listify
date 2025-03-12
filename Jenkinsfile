@@ -1,51 +1,21 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/30 * * * *')
+    tools {
+    python 'python 3.12'
     }
 
     stages {
-        stage('Checkout') {
+
+        stage('Install Dependencies') {
             steps {
-                git branch: 'main', url: 'https://github.com/NirFakiro/My-App-backend.git'
+                sh 'pip install -r requirements.txt'
             }
         }
-
-        stage('Setup Virtualenv') {
+        stage('Run Server') {
             steps {
-                script {
-                    sh '''
-                    python -m venv .venv
-                    if [ -f ".venv/Scripts/activate" ]; then
-                        . .venv/Scripts/activate
-                    else
-                        source .venv/bin/activate
-                    fi
-                    pip install -r requirements.txt
-                    '''
-                }
-            }
-        }
-
-        stage('Run backend_testing') {
-            steps {
-                echo 'Running backend app...'
-                sh '. .venv/Scripts/activate && python testing/backend_testing.py'
-            }
-        }
-
-        stage('Run frontend_testing') {
-            steps {
-                echo 'Running frontend app...'
-                sh '. .venv/Scripts/activate && python testing/frontend_testing.py'
-            }
-        }
-
-        stage('Clean environment') {
-            steps {
-                echo 'Cleaning environment...'
-                sh '. .venv/Scripts/activate && python clean_environment.py'
+            dir('user_api'){
+             sh 'python server.py'
             }
         }
     }
