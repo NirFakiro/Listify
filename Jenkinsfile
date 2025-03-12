@@ -1,32 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.12'
+        }
+    }
 
     stages {
-     stage('Install Python') {
-            steps {
-                script {
-                    echo "Installing Python..."
-                    sh 'sudo apt-get update && sudo apt-get install -y python3'
-                    sh 'python3 --version'
-                }
-            }
-        }
-        stage('Check Python Version') {
-            steps {
-                script {
-                    echo "Checking Python version..."
-                    sh 'python --version'
-                    echo "Python is working fine."
-                }
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 script {
                     echo "Installing dependencies from requirements.txt..."
                     sh 'pip install -r requirements.txt'
-                    echo "Dependencies installed successfully."
                 }
             }
         }
