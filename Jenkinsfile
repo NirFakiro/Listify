@@ -1,29 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.12'
-        }
-    }
+    agent any
 
     stages {
-        stage('Install Dependencies') {
+        stage('Run Python Script') {
             steps {
                 script {
-                    echo "Installing dependencies from requirements.txt..."
-                    sh 'pip install -r requirements.txt'
-
-                }
-            }
-        }
-
-        stage('Run Server') {
-            steps {
-                dir('user_api') {
-                    script {
-                        echo "Running server.py..."
-                        sh 'ls -l'
-                        sh 'python server.py'
-                    }
+                    echo "Running Python script..."
+                    sh 'python -c "print(\'Hello, World!\')"'
                 }
             }
         }
