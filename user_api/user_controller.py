@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from user_service import create_user, get_users, update_user, delete_user
+from user_api.user_service  import create_user, get_users, update_user, delete_user
 
 
 def get_all_users():

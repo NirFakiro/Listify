@@ -1,5 +1,5 @@
 from flask import Blueprint
-from user_controller import add_user, get_all_users, put, delete
+from user_api.user_controller  import add_user, get_all_users, put, delete
 
 user_router = Blueprint('user', __name__)
 
