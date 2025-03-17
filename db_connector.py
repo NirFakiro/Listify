@@ -11,7 +11,7 @@ def get_db_connection():
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
-            password=db_password,
+            password='Nirfakiro97$!',
             database='users_db',
             port=3307
 
