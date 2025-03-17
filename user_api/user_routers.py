@@ -3,7 +3,7 @@ from user_api.user_controller  import add_user, get_all_users, put, delete
 
 user_router = Blueprint('user', __name__)
 
-user_router.route('/users', methods=['POST'])(add_user)
+user_router.route('/', methods=['POST'])(add_user)
 
 user_router.route('/', methods=['GET'])(get_all_users)
 
